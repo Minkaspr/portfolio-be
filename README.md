@@ -246,9 +246,15 @@ Esto generará un directorio `prisma/` con el archivo `schema.prisma` y creará 
 ### Configuración de la Base de Datos
 Edita el archivo `.env` para definir la URL de conexión a la base de datos. Por ejemplo, para PostgreSQL:
 ```env
-DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/nombre_de_base_de_datos"
+DATABASE_URL="postgresql://USUARIO:CONTRASEÑA@HOST:PUERTO/NOMBRE_BD?schema=SCHEMA"
 ```
-Asegúrate de reemplazar `usuario`, `contraseña` y `nombre_de_base_de_datos` con tus valores reales.
+Descripción de los parámetros:
+- `USUARIO`: Nombre de usuario de la base de datos.
+- `CONTRASEÑA`: Contraseña del usuario de la base de datos.
+- `HOST`: Dirección del servidor de la base de datos (por defecto localhost para entornos locales).
+- `PUERTO`: Puerto en el que corre PostgreSQL (por defecto 5432).
+- `NOMBRE_BD`: Nombre de la base de datos a utilizar.
+- schema=`SCHEMA`: (Opcional) Esquema dentro de la base de datos. Por defecto, Prisma usa public.
 
 ### Definición del Esquema
 Edita el archivo `prisma/schema.prisma` para definir las tablas y relaciones de la base de datos.
@@ -281,21 +287,3 @@ Esto mostrará la versión instalada de Prisma y su cliente.
 
 ---
 Con estos pasos, Prisma estará completamente integrado en el proyecto y listo para usarse en la API.
-
-
-### Configuración de la Base de Datos
-Para conectar la base de datos con Prisma, es necesario definir la variable de entorno DATABASE_URL.
-
-En un archivo .env en la raíz del proyecto, agrega la siguiente línea (ajustando los valores según tu configuración):
-
-```env
-DATABASE_URL="postgresql://USUARIO:CONTRASEÑA@HOST:PUERTO/NOMBRE_BD?schema=SCHEMA"
-```
-
-Descripción de los parámetros:
-- USUARIO: Nombre de usuario de la base de datos.
-- CONTRASEÑA: Contraseña del usuario de la base de datos.
-- HOST: Dirección del servidor de la base de datos (por defecto localhost para entornos locales).
-- PUERTO: Puerto en el que corre PostgreSQL (por defecto 5432).
-- NOMBRE_BD: Nombre de la base de datos a utilizar.
-- schema=SCHEMA: (Opcional) Esquema dentro de la base de datos. Por defecto, Prisma usa public.
