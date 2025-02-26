@@ -3,7 +3,7 @@ import express from 'express';
 const projectsRouter = express.Router();
 
 projectsRouter.get('/', (req, res) => {
-  res.send('AQUI conseguiras los idiomas! Puedes probarlo');
+  res.send('Estoy trabajando en ello');
 });
 
 export default projectsRouter;

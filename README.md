@@ -219,5 +219,83 @@ npm run start
 
 ¡Con esto puedes iniciar un nuevo proyecto o configurar uno desde cero de manera sencilla! 🚀🔥
 
+---
+
+## Integración de Prisma en el Proyecto
+
+Prisma es un ORM (Object-Relational Mapping) que facilita la interacción con la base de datos en TypeScript/JavaScript. A continuación, se detallan los pasos para instalar, inicializar y migrar la base de datos con Prisma en este proyecto.
+
+### Instalación de Prisma
+Para instalar Prisma como dependencia de desarrollo, ejecuta:
+```sh
+pnpm add -D prisma
+```
+
+Luego, instala el cliente de Prisma:
+```sh
+pnpm add @prisma/client
+```
+
+### Inicialización de Prisma
+Para inicializar Prisma en el proyecto, ejecuta:
+```sh
+pnpm prisma init
+```
+Esto generará un directorio `prisma/` con el archivo `schema.prisma` y creará un archivo `.env` para la configuración de la base de datos.
+
+### Configuración de la Base de Datos
+Edita el archivo `.env` para definir la URL de conexión a la base de datos. Por ejemplo, para PostgreSQL:
+```env
+DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/nombre_de_base_de_datos"
+```
+Asegúrate de reemplazar `usuario`, `contraseña` y `nombre_de_base_de_datos` con tus valores reales.
+
+### Definición del Esquema
+Edita el archivo `prisma/schema.prisma` para definir las tablas y relaciones de la base de datos.
+
+### Creación y Aplicación de Migraciones
+Para crear y aplicar una migración en la base de datos, ejecuta:
+```sh
+pnpm prisma migrate dev --name init
+```
+Esto generará un directorio `migrations/` dentro de `prisma/` y aplicará la migración a la base de datos.
+
+### Generación del Cliente de Prisma
+Para generar el cliente de Prisma (necesario para interactuar con la base de datos en el código), ejecuta:
+```sh
+pnpm prisma generate
+```
+
+### Aplicación de Cambios en el Esquema
+Si realizas cambios en el esquema (`schema.prisma`), crea y aplica una nueva migración:
+```sh
+pnpm prisma migrate dev --name nombre_migracion
+```
+
+### Verificación de Prisma
+Para verificar que Prisma está correctamente instalado, ejecuta:
+```sh
+pnpm prisma --version
+```
+Esto mostrará la versión instalada de Prisma y su cliente.
+
+---
+Con estos pasos, Prisma estará completamente integrado en el proyecto y listo para usarse en la API.
 
 
+### Configuración de la Base de Datos
+Para conectar la base de datos con Prisma, es necesario definir la variable de entorno DATABASE_URL.
+
+En un archivo .env en la raíz del proyecto, agrega la siguiente línea (ajustando los valores según tu configuración):
+
+```env
+DATABASE_URL="postgresql://USUARIO:CONTRASEÑA@HOST:PUERTO/NOMBRE_BD?schema=SCHEMA"
+```
+
+Descripción de los parámetros:
+- USUARIO: Nombre de usuario de la base de datos.
+- CONTRASEÑA: Contraseña del usuario de la base de datos.
+- HOST: Dirección del servidor de la base de datos (por defecto localhost para entornos locales).
+- PUERTO: Puerto en el que corre PostgreSQL (por defecto 5432).
+- NOMBRE_BD: Nombre de la base de datos a utilizar.
+- schema=SCHEMA: (Opcional) Esquema dentro de la base de datos. Por defecto, Prisma usa public.
