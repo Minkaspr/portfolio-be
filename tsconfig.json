@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "outDir": "./dist", // Carpeta de salida
+    "rootDir": "./src", // Carpeta raíz de código fuente
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "CommonJS"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
